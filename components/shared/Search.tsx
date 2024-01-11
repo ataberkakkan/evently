@@ -15,7 +15,7 @@ const Search = ({
   const [query, setQuery] = useState("");
 
   const router = useRouter();
-  const searcParams = useSearchParams();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
     const delayDebounceFn = setTimeout(() => {
@@ -23,13 +23,13 @@ const Search = ({
 
       if (query) {
         newUrl = formUrlQuery({
-          params: searcParams.toString(),
+          params: searchParams.toString(),
           key: "query",
           value: query,
         });
       } else {
         newUrl = removeKeysFromQuery({
-          params: searcParams.toString(),
+          params: searchParams.toString(),
           keysToRemove: ["query"],
         });
       }
@@ -38,7 +38,7 @@ const Search = ({
     }, 3000);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [query, searcParams, router]);
+  }, [query, searchParams, router]);
 
   return (
     <div
